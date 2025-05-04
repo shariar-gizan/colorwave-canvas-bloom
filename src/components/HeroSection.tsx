@@ -133,7 +133,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes scale-in-bounce {
           0% {
             transform: scale(0);

@@ -116,7 +116,7 @@ export default function SkillsSection() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes skill-bar-fill {
           0% { width: 0%; }
           100% { width: var(--target-width); }

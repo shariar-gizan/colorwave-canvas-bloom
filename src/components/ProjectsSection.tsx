@@ -156,7 +156,7 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .project-card.is-visible {
           opacity: 1;
           transform: translateY(0);

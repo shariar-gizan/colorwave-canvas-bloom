@@ -62,7 +62,7 @@ const Index = () => {
         <Footer />
       </div>
       
-      <style jsx global>{`
+      <style>{`
         .animate-section {
           opacity: 0;
           transform: translateY(50px);

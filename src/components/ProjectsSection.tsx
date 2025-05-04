@@ -1,37 +1,7 @@
 
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef } from "react";
 
 export default function ProjectsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      {
-        root: null,
-        threshold: 0.1
-      }
-    );
-    
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-      observer.observe(card);
-    });
-    
-    return () => {
-      projectCards.forEach(card => {
-        observer.unobserve(card);
-      });
-    };
-  }, []);
-
   const projects = [
     {
       id: 1,
@@ -84,12 +54,12 @@ export default function ProjectsSection() {
   ];
 
   return (
-    <section id="projects" className="py-24 relative" ref={sectionRef}>
+    <section id="projects" className="py-24 relative">
       {/* Background decoration */}
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl -z-10 animate-float"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl -z-10"></div>
       
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16 opacity-0 animate-slide-up" style={{animationFillMode: 'forwards', animationDelay: '0.2s'}}>
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured <span className="gradient-text">Projects</span></h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
             A selection of my recent mobile application development work
@@ -100,76 +70,46 @@ export default function ProjectsSection() {
           {projects.map((project, index) => (
             <div 
               key={project.id} 
-              className="project-card rounded-xl overflow-hidden shadow-lg opacity-0 transform translate-y-10"
-              style={{ 
-                transitionDelay: `${index * 0.1}s`, 
-                transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
-              }}
+              className="project-card rounded-xl overflow-hidden shadow-lg animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-64 object-cover object-top transition-transform duration-700 group-hover:scale-110"
-                />
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                className="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110"
+              />
+              
+              <div className="project-card-overlay flex flex-col justify-end p-6">
+                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                <p className="text-white/80 text-sm mb-4">{project.description}</p>
                 
-                <div className="project-card-overlay flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">{project.title}</h3>
-                  <p className="text-white/80 text-sm mb-4 transform translate-y-4 transition-transform duration-300 delay-75 group-hover:translate-y-0">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4 transform translate-y-4 opacity-0 transition-all duration-300 delay-150 group-hover:translate-y-0 group-hover:opacity-100">
-                    {project.technologies.map(tech => (
-                      <span 
-                        key={tech} 
-                        className="text-xs px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <Button 
-                    size="sm" 
-                    variant="secondary" 
-                    asChild
-                    className="transform translate-y-4 opacity-0 transition-all duration-300 delay-200 group-hover:translate-y-0 group-hover:opacity-100"
-                  >
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
-                      View Project
-                    </a>
-                  </Button>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.map(tech => (
+                    <span 
+                      key={tech} 
+                      className="text-xs px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
+                
+                <Button size="sm" variant="secondary" asChild>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </Button>
               </div>
             </div>
           ))}
         </div>
         
-        <div className="mt-12 text-center opacity-0 animate-slide-up" style={{animationFillMode: 'forwards', animationDelay: '0.8s'}}>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="border-2 animate-pulse-custom"
-            style={{animationDelay: '1.2s'}}
-          >
+        <div className="mt-12 text-center">
+          <Button size="lg" variant="outline" className="border-2">
             View All Projects
           </Button>
         </div>
       </div>
-
-      <style>{`
-        .project-card.is-visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        .project-card:hover .project-card-overlay {
-          opacity: 1;
-        }
-        .project-card-overlay {
-          background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
-          opacity: 0;
-          transition: opacity 0.4s ease;
-        }
-      `}</style>
     </section>
   );
 }

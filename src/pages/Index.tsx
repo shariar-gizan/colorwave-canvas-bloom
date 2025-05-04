@@ -7,6 +7,7 @@ import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import UserProfile from "@/components/UserProfile";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
           <ContactSection />
         </main>
         <Footer />
+        <UserProfile />
       </div>
     </ThemeProvider>
   );

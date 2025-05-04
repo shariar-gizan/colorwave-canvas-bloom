@@ -28,11 +28,21 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="min-h-screen flex items-center pt-16 relative overflow-hidden">
+      {/* Header Image */}
+      <div className="absolute top-0 left-0 w-full h-48 sm:h-64 md:h-72 lg:h-80 overflow-hidden z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1531297484001-80022131f5a1" 
+          alt="Header background" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background"></div>
+      </div>
+      
       {/* Background decoration */}
       <div className="absolute top-20 -right-20 w-72 h-72 bg-purple-500/20 rounded-full filter blur-3xl animate-float"></div>
       <div className="absolute bottom-20 -left-20 w-80 h-80 bg-blue-500/20 rounded-full filter blur-3xl animate-float delay-1000"></div>
       
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 stagger-animate">
             <div>
